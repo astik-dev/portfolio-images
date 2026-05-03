@@ -1,0 +1,37 @@
+name: Process & Publish Images
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  process-images:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Restore or cache processed projects images
+        uses: actions/cache@v5
+        with:
+          path: img/processed/projects
+          key: processed-projects-${{ hashFiles('img/raw/projects/**') }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run image processing
+        run: npm start
+
+      - name: Publish processed images
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: processed-images
+          folder: img/processed

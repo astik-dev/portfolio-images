@@ -1,0 +1,10 @@
+{
+	"compilerOptions": {
+		"checkJs": true,
+		"strict": true,
+		"target": "es2024",
+		"moduleResolution": "nodenext",
+		"module": "nodenext"
+	},
+	"include": ["src/**/*"]
+}
