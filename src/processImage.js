@@ -17,7 +17,7 @@ const SHARP_OUTPUT_FORMATS = /** @type {const} */ ([
 /**
  * @param {string} input 
  * @param {{ width: number, height?: number }[]} sizes 
- * @param {sharp.ResizeOptions} resizeOptions 
+ * @param {import("sharp").ResizeOptions} resizeOptions 
  * @param {string} dirOut 
  * @returns {Promise<void[][]>}
  */
